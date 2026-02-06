@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Rose Day 🌹</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: radial-gradient(circle at top, #2b0a12, #050000);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+  color: white;
+}
+
+/* CARD */
+.card {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(14px);
+  border-radius: 22px;
+  padding: 35px;
+  text-align: center;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+  animation: fadeIn 1.5s ease;
+  z-index: 2;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 10px 0;
+}
+
+/* TYPEWRITER */
+#typewriter {
+  font-size: 1.1em;
+  line-height: 1.6;
+  min-height: 150px;
+  margin-top: 15px;
+}
+
+/* BUTTON */
+button {
+  margin-top: 20px;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 30px;
+  background: #ff4d6d;
+  color: white;
+  font-size: 1em;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 18px #ff4d6d;
+}
+
+/* HEART */
+#heart {
+  font-size: 3.8em;
+  margin-top: 20px;
+  opacity: 0;
+  animation: beat 1s infinite;
+}
+
+.show {
+  opacity: 1;
+}
+
+@keyframes beat {
+  0% { transform: scale(1); text-shadow: 0 0 10px #ff4d6d; }
+  25% { transform: scale(1.25); text-shadow: 0 0 25px #ff1e56; }
+  50% { transform: scale(1); }
+  75% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* ROSE BLOOM */
+.rose {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 120px;
+  height: 120px;
+  transform: translateX(-50%);
+  animation: bloom 3s ease forwards;
+}
+
+.petal {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, #ff6b81, #c9184a);
+  border-radius: 50% 50% 50% 0;
+  transform-origin: bottom right;
+  opacity: 0;
+  animation: open 2s ease forwards;
+}
+
+.p1 { transform: rotate(0deg) translate(30px); }
+.p2 { transform: rotate(60deg) translate(30px); }
+.p3 { transform: rotate(120deg) translate(30px); }
+.p4 { transform: rotate(180deg) translate(30px); }
+.p5 { transform: rotate(240deg) translate(30px); }
+.p6 { transform: rotate(300deg) translate(30px); }
+
+.stem {
+  position: absolute;
+  top: 120px;
+  left: 50%;
+  width: 6px;
+  height: 120px;
+  background: linear-gradient(#2d6a4f, #1b4332);
+  transform: translateX(-50%);
+  border-radius: 10px;
+}
+
+@keyframes bloom {
+  to { transform: translateX(-50%) scale(1.1); }
+}
+
+@keyframes open {
+  to { opacity: 1; }
+}
+
+/* FALLING ROSES */
+.falling {
+  position: absolute;
+  top: -40px;
+  font-size: 22px;
+  animation: fall linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes fall {
+  to { transform: translateY(110vh) rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: scale(0.9);}
+  to {opacity: 1; transform: scale(1);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1>Happy Rose Day, Ritija 🌹</h1>
+
+  <div id="typewriter"></div>
+
+  <div id="heart">❤️</div>
+
+  <button onclick="startSurprise()">Tap here 💌</button>
+</div>
+
+<!-- BLOOMING ROSE -->
+<div class="rose">
+  <div class="petal p1"></div>
+  <div class="petal p2"></div>
+  <div class="petal p3"></div>
+  <div class="petal p4"></div>
+  <div class="petal p5"></div>
+  <div class="petal p6"></div>
+  <div class="stem"></div>
+</div>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/audio/2023/03/02/audio_0c2c8d2f6c.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const text =
+`Ritija 🌹
+
+This rose is not just a flower.
+It’s a quiet reminder that
+some people make the world
+feel softer without trying.
+
+If hearts could speak,
+this one would smile.
+
+For you — today and always.`;
+
+let index = 0;
+let started = false;
+
+function startSurprise() {
+  if (started) return;
+  started = true;
+
+  document.getElementById("music").play();
+  typeEffect();
+  fallingRoses();
+}
+
+function typeEffect() {
+  if (index < text.length) {
+    document.getElementById("typewriter").innerHTML +=
+      text.charAt(index) === "\n" ? "<br>" : text.charAt(index);
+    index++;
+    setTimeout(typeEffect, 45);
+  } else {
+    document.getElementById("heart").classList.add("show");
+  }
+}
+
+function fallingRoses() {
+  setInterval(() => {
+    const rose = document.createElement("div");
+    rose.className = "falling";
+    rose.innerHTML = "🌹";
+    rose.style.left = Math.random() * 100 + "vw";
+    rose.style.animationDuration = (Math.random() * 4 + 4) + "s";
+    document.body.appendChild(rose);
+    setTimeout(() => rose.remove(), 8000);
+  }, 400);
+}
+</script>
+
+</body>
+</html>
