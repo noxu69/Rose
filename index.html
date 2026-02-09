@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>For Ritija 🤍🍪</title>
+<title>Teddy Day 🧸</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -13,9 +13,9 @@
 body{
   margin:0;
   font-family:'Poppins',sans-serif;
-  background:linear-gradient(135deg,#fff,#f3f3f3,#e8e8e8);
+  background:linear-gradient(135deg,#ffe6f0,#fff0f5,#fceaff);
   overflow:hidden;
-  color:#444;
+  color:#6a4a5a;
 }
 
 /* Slides */
@@ -41,33 +41,15 @@ body{
   width:100%;
   max-width:650px;
   background:white;
-  border-radius:30px;
+  border-radius:35px;
   padding:40px 30px;
   text-align:center;
   box-shadow:0 25px 80px rgba(0,0,0,.15);
-  animation:fadeIn 1s ease;
 }
 
-@keyframes fadeIn{
-  from{transform:translateY(30px);opacity:0;}
-  to{transform:translateY(0);opacity:1;}
-}
-
-h1{
-  font-size:2em;
-  color:#6b4f4f;
-}
-
-.big{
-  font-size:1.1em;
-  line-height:1.8;
-  margin-top:20px;
-}
-
-.name{
-  color:#8b5e5e;
-  font-weight:700;
-}
+h1{font-size:2.2em;}
+.big{font-size:1.1em;line-height:1.8;margin-top:20px;}
+.name{color:#d86b9f;font-weight:700;}
 
 /* Button */
 button{
@@ -76,27 +58,56 @@ button{
   border:none;
   border-radius:50px;
   font-size:1em;
-  background:#8b5e5e;
+  background:#d86b9f;
   color:white;
   cursor:pointer;
   transition:.3s;
 }
+button:hover{transform:scale(1.08);}
 
-button:hover{
-  transform:scale(1.07);
+/* Teddy */
+.teddy{
+  font-size:6em;
+  animation:bounce 2s infinite;
+}
+@keyframes bounce{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-15px);}
 }
 
-/* Floating Chocolate */
-.float{
+/* Walking teddy */
+.walk{
   position:fixed;
-  font-size:24px;
-  animation:float 6s linear infinite;
-  opacity:.7;
+  bottom:10px;
+  font-size:3em;
+  animation:walk 15s linear infinite;
+}
+@keyframes walk{
+  from{left:-10%;}
+  to{left:110%;}
 }
 
-@keyframes float{
-  from{transform:translateY(-10vh);}
-  to{transform:translateY(110vh);}
+/* Falling hearts */
+.fall{
+  position:fixed;
+  top:-40px;
+  font-size:22px;
+  animation:fall linear infinite;
+  opacity:.8;
+  pointer-events:none;
+}
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(360deg);}
+}
+
+/* Hug effect */
+.hug{
+  animation:hugPulse 1s infinite;
+}
+@keyframes hugPulse{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.2);}
+  100%{transform:scale(1);}
 }
 
 /* Heart */
@@ -104,7 +115,6 @@ button:hover{
   font-size:5em;
   animation:beat 1s infinite;
 }
-
 @keyframes beat{
   0%{transform:scale(1);}
   25%{transform:scale(1.25);}
@@ -113,11 +123,18 @@ button:hover{
   100%{transform:scale(1);}
 }
 
-/* Typewriter */
-.type{
-  border-right:2px solid #8b5e5e;
-  white-space:pre-wrap;
-  overflow:hidden;
+/* Sparkles */
+.spark{
+  position:fixed;
+  width:3px;
+  height:3px;
+  background:#fff;
+  border-radius:50%;
+  animation:twinkle 2s infinite alternate;
+}
+@keyframes twinkle{
+  from{opacity:0.2;}
+  to{opacity:1;}
 }
 </style>
 </head>
@@ -127,33 +144,38 @@ button:hover{
 <!-- Slide 1 -->
 <div class="slide active">
   <div class="card">
-    <h1>Happy Chocolate Day 🤍🍪</h1>
+    <h1>Happy Teddy Day 🧸</h1>
     <p class="big">
       Ritija 💖<br><br>
-      Today is about sweetness…
-      and you are the sweetest part of my life.
+      Today I’m sending you the softest,
+      warmest hug possible.
     </p>
-    <button onclick="nextSlide()">Next 🍫</button>
+    <button onclick="nextSlide()">Next 🤗</button>
   </div>
 </div>
 
 <!-- Slide 2 -->
 <div class="slide">
   <div class="card">
+    <div id="mainTeddy" class="teddy">🧸</div>
     <p class="big">
-      I know your favorite chocolate is
-      <span class="name">Hershey’s Cookies & Creme</span> 🤍🍪<br><br>
-      So this one is specially for you.
+      Press & Hold the teddy to hug 🤍
     </p>
-    <button onclick="nextSlide()">Next 🤍</button>
   </div>
 </div>
 
-<!-- Slide 3 Typewriter -->
+<!-- Slide 3 -->
 <div class="slide">
   <div class="card">
-    <p id="typeText" class="big type"></p>
-    <button onclick="nextSlide()">Open Surprise 🎁</button>
+    <p class="big">
+      Ritija 🤍<br><br>
+      You are my comfort.<br>
+      My calm place.<br>
+      My favorite hug.<br><br>
+      If I could, I’d send you a hug
+      that lasts forever.
+    </p>
+    <button onclick="nextSlide()">Final Hug 💖</button>
   </div>
 </div>
 
@@ -163,70 +185,72 @@ button:hover{
     <div id="heart">❤️</div>
     <h1 class="name">Ritija ❤️ Prinsu</h1>
     <p class="big">
-      You are softer than chocolate,
-      sweeter than cookies,
-      and more special than anything in this world.<br><br>
-      I love you so much 🤍🍪
+      You are my softest hug.<br>
+      My sweetest comfort.<br><br>
+      Happy Teddy Day 🤗💖
     </p>
   </div>
 </div>
 
-<script>
+<div class="walk">🧸</div>
 
+<audio id="music" loop>
+<source src="https://cdn.pixabay.com/audio/2023/03/02/audio_0c2c8d2f6c.mp3">
+</audio>
+
+<script>
 const slides=document.querySelectorAll(".slide");
 let current=0;
+const music=document.getElementById("music");
+const teddy=document.getElementById("mainTeddy");
 
 function nextSlide(){
   slides[current].classList.remove("active");
   current++;
   slides[current].classList.add("active");
-
-  if(current===2){
-    startTyping();
-  }
+  if(current===1){music.play();}
+  heartRain();
 }
 
-/* Typewriter message */
-const message =
-`Here is your chocolate, Ritija 🤍🍪
-
-Not just a sweet treat,
-but a small reminder
-that you make my life sweeter every day.
-
-When you smile,
-my heart melts faster than chocolate.
-
-When you laugh,
-everything feels lighter.
-
-You are my favorite sweetness.`;
-
-let i=0;
-
-function startTyping(){
-  const el=document.getElementById("typeText");
-  function type(){
-    if(i<message.length){
-      el.textContent+=message.charAt(i);
-      i++;
-      setTimeout(type,30);
-    }
-  }
-  type();
+/* Hug feature */
+if(teddy){
+  teddy.addEventListener("mousedown",()=>{
+    teddy.classList.add("hug");
+  });
+  teddy.addEventListener("mouseup",()=>{
+    teddy.classList.remove("hug");
+    nextSlide();
+  });
+  teddy.addEventListener("touchstart",()=>{
+    teddy.classList.add("hug");
+  });
+  teddy.addEventListener("touchend",()=>{
+    teddy.classList.remove("hug");
+    nextSlide();
+  });
 }
 
-/* Floating chocolates */
-setInterval(()=>{
-  const c=document.createElement("div");
-  c.className="float";
-  c.innerHTML=Math.random()>0.5?"🍫":"🍪";
-  c.style.left=Math.random()*100+"vw";
-  c.style.animationDuration=(Math.random()*4+4)+"s";
-  document.body.appendChild(c);
-  setTimeout(()=>c.remove(),8000);
-},400);
+function heartRain(){
+  setInterval(()=>{
+    const h=document.createElement("div");
+    h.className="fall";
+    h.innerHTML="💖";
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDuration=(Math.random()*4+4)+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),8000);
+  },500);
+}
 
+/* Sparkles */
+for(let i=0;i<80;i++){
+  const s=document.createElement("div");
+  s.className="spark";
+  s.style.left=Math.random()*100+"vw";
+  s.style.top=Math.random()*100+"vh";
+  s.style.animationDuration=(Math.random()*3+1)+"s";
+  document.body.appendChild(s);
+}
 </script>
 
 </body>
